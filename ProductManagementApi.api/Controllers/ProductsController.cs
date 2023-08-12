@@ -10,7 +10,7 @@ namespace ProductManagementApi.api.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IBaseRepository<Product> productsRepository;
+        private  IBaseRepository<Product> productsRepository;
 
         public ProductsController(IBaseRepository<Product> productsRepository)
         {
