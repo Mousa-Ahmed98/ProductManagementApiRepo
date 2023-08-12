@@ -20,7 +20,8 @@ namespace ProductManagementApi.api.Controllers
         [HttpGet]
         public IActionResult GetAllProducts() 
         {
-            return Ok(productsRepository.PipeAllProducts());
+            var products = productsRepository.PipeAllProducts();
+            return Ok(products);
         }
 
     }
