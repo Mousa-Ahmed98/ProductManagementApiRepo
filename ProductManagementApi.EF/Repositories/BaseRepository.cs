@@ -12,14 +12,16 @@ namespace ProductManagementApi.EF.Repositories
     {
         protected readonly ApplicationDbContext context;
 
-        public BaseRepository(ApplicationDbContext context)
+        public BaseRepository(ApplicationDbContext _context)
         {
-            this.context = context;
+            this.context = _context;
         }
 
         public T AddNewProduct(T product)
         {
-            throw new NotImplementedException();
+            context.Set<T>().Add(product);
+            context.SaveChanges();
+            return product;
         }
 
         public T DeleteProduct(int id)

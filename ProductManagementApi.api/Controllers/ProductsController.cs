@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using ProductManagementApi.api.DTOs;
 using ProductManagementApi.Core.Interfaces;
 using ProductManagementApi.Core.Models;
+using System.Diagnostics;
 
 namespace ProductManagementApi.api.Controllers
 {
@@ -22,6 +24,23 @@ namespace ProductManagementApi.api.Controllers
         {
             var products = productsRepository.PipeAllProducts();
             return Ok(products);
+        }
+
+        [HttpPost]
+        public IActionResult AddProduct([FromForm]ProductDto productDto)
+        {
+            Product product = new Product { Name = productDto.Name, Price = productDto.Price,
+            Description = productDto.Description, Quantity = productDto.Quantity};
+            
+            if(productDto.ValidateState() == null)
+            {
+                productsRepository.AddNewProduct(product);
+                return Ok(product);
+            }
+            else
+            {
+                return BadRequest(productDto.ValidateState());
+            }
         }
 
     }

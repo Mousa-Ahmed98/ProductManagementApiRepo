@@ -49,7 +49,7 @@ namespace ProductManagementApi.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("products");
+                    b.ToTable("products", (string)null);
                 });
 #pragma warning restore 612, 618
         }
