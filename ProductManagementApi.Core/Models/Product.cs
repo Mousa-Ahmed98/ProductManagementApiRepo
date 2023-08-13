@@ -26,6 +26,6 @@ namespace ProductManagementApi.Core.Models
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
         
-
+        
     }
 }

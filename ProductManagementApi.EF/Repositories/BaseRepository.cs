@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductManagementApi.Core.Interfaces;
+using ProductManagementApi.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,19 +25,28 @@ namespace ProductManagementApi.EF.Repositories
             return product;
         }
 
-        public T DeleteProduct(int id)
+        public T DeleteProduct(T product)
         {
-            throw new NotImplementedException();
+            context.Set<T>().Remove(product);
+            context.SaveChanges();
+            return product;
         }
 
-       /* public T PipeAllProducts()
+        public async Task<T> FindProduct(int id)
         {
-            return context.Set<T>().Find(3);
-        }*/
-
+            return await context.Set<T>().FindAsync(id);
+        }
         public IEnumerable<T> PipeAllProducts()
         {
             return context.Set<T>().ToList();
         }
+
+        public T UpdateProduct(T product)
+        {
+            context.Set<T>().Update(product);
+            context.SaveChanges();
+            return product;
+        }
+
     }
 }

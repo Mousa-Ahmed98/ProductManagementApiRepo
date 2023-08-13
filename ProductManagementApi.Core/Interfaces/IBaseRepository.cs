@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductManagementApi.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,10 @@ namespace ProductManagementApi.Core.Interfaces
 
         T AddNewProduct(T product);
 
-        T DeleteProduct(int id);
+        T DeleteProduct(T product);
+
+        Task<T> FindProduct(int id);
+
+        T UpdateProduct(T product);
     }
 }
